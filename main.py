@@ -1,1 +1,3 @@
-print("2025-1 오픈소스 소프트웨어 실습 팀명 : nux")
+print("2025-1 oss실습 nux : 정재윤")
+print("2025-1 oss실습 nux : 육심호")
+print('2025-1 oss실습 nux : 조준용')
