@@ -10,12 +10,15 @@
             padding-right: 20px;
             padding-bottom : 10px;
         }
+        input{
+            width: 100px;
+        }
     </style>
     <body>
         <p><t>WELCOME!</t></p>
-        <p style = "font-weight: bold">input list</p>
+        <p style = "font-weight: bold">Fill follows</p>
 
-        <form action="/result" method="POST" onsubmit="combineEmail()">
+        <form action="/result" method="POST" onsubmit="combineAndValidateEmail()">
             <table>
                 <tr>
                     <td><label for="name">Name</label></td>
@@ -43,7 +46,10 @@
                         
                     </td>
                 </tr>
-                <tr>
+                    <td><label for="Dream">Dream girl/guy</label></td>
+                    <td>
+                        <textarea name="Dream" cols="40" rows="5" placeholder="write" required></textarea>
+                    </td>
                 </tr>
             </table>
             
@@ -60,8 +66,20 @@
                 }
             });
 
+            function combineAndValidateEmail(){
+                combineEmail();
+                const email = document.getElementById("Full-email").value;
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if(!emailRegex.test(email)){
+                    alert("Unvalid Email");
+                    event.preventDefault();
+                    return false;
+                }
+                return true;
+            }
+
             function checkInputs(){
-                const inputs = document.querySelectorAll("input[required], select[required]");
+                const inputs = document.querySelectorAll("input[required], select[required], textarea[required]");
                 const submitBtn = document.getElementById("submit-btn");
                 const domainSelect = document.getElementById("Email-domain");
                 const customDomain = document.getElementById("custom-domain");
@@ -82,7 +100,7 @@
                 submitBtn.disabled = !allFilled;
             }
             
-            document.querySelectorAll("input, select").forEach(input =>{
+            document.querySelectorAll("input, select, textarea").forEach(input =>{
                 input.addEventListener("input", checkInputs);
             })
             document.getElementById("Email-domain").addEventListener("change",checkInputs);
