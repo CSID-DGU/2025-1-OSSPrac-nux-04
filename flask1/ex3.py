@@ -11,9 +11,11 @@ def result() :
     if(request.method=='POST'):
         result = dict()
         result['Name'] = request.form.get('name')
-        result['StuedntNumber'] = request.form.get('StudentNumber')
+        result['StuedentNumber'] = request.form.get('StudentNumber')
+        result['Email'] = request.form.get('Full-email')
         # result['language'] = request.form.getlist('languages')
         # result['languages'] = ','.join(result['languages'])
         # return render_template('result.html',result=result)
+    return render_template('result.html', result=result)
     
 app.run(debug=1)
