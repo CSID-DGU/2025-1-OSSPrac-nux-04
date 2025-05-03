@@ -10,7 +10,7 @@ def index() :
 def input():
     return render_template('app_input.html')
 
-@app.route('/result',method=['POST'])
+@app.route('/result',methods=['POST'])
 def result() :
     names = request.form.getlist('name[]')
     student_number = request.form.getlist('StudentNumber[]')
