@@ -18,7 +18,7 @@
         <p><t>WELCOME!</t></p>
         <p style = "font-weight: bold">Fill follows</p>
 
-        <form action="/result" method="POST" onsubmit="combineAndValidateEmail()">
+        <form action="/result" method="POST" onsubmit="checkInputs()">
             <table>
                 <tr>
                     <td><label for="name">Name</label></td>
@@ -28,69 +28,18 @@
                     <td><label for="StudentNumber">Student Number</label></td>
                     <td><input type="text" id="StudentNumber" name="StudentNumber" required></td>
                 </tr>
-                <tr>
-                    <td><label for="Email-front">Email</label></td>
-                    <td><input type="text" id="Email-front" name="Email-front" required>
-                        @
-                        <select id="Email-domain" name="Email-domain" required>
-                            <option value="unselected">Select</option>
-                            <option value="gmail.com">gmail.com</option>
-                            <option value="naver.com">naver.com</option>
-                            <option value="daum.com">daum.net</option>
-                            <option value="hanmail.net">hanmail.net</option>
-                            <option value="dgu.ac.kr">dgu.ac.kr</option>
-                            <option value="dongguk.edu">dongguk.edu</option>
-                            <option value="custom">직접 입력</option>
-                        </select>
-                        <input type="text" id="custom-domain" name="custom-domain" style="display: none;">
-                        
-                    </td>
-                </tr>
-                    <td><label for="Dream">Dream girl/guy</label></td>
-                    <td>
-                        <textarea name="Dream" cols="40" rows="5" placeholder="write" required></textarea>
-                    </td>
-                </tr>
             </table>
             
             <input type="hidden" id="Full-email" name="Full-email">
             <button type='submit' id="submit-btn" disabled>submit</button>
         </form>
         <script>
-            document.getElementById('Email-domain').addEventListener('change', function() {
-                const customDomain = document.getElementById('custom-domain');
-                if (this.value === 'custom') {
-                    customDomain.style.display = 'inline-block';
-                } else {
-                    customDomain.style.display = 'none';
-                }
-            });
-
-            function combineAndValidateEmail(){
-                combineEmail();
-                const email = document.getElementById("Full-email").value;
-                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                if(!emailRegex.test(email)){
-                    alert("Unvalid Email");
-                    event.preventDefault();
-                    return false;
-                }
-                return true;
-            }
 
             function checkInputs(){
-                const inputs = document.querySelectorAll("input[required], select[required], textarea[required]");
+                const inputs = document.querySelectorAll("input[required]");
                 const submitBtn = document.getElementById("submit-btn");
-                const domainSelect = document.getElementById("Email-domain");
-                const customDomain = document.getElementById("custom-domain");
                 let allFilled = true;
 
-                if(domainSelect.value == "unselected"){
-                    allFilled = false;
-                }
-                else if(domainSelect.value=="custom"&&!customDomain.value.trim()){
-                    allFilled = false;
-                }
                 inputs.forEach(input =>{
                     if(!input.value.trim()){
                         allFilled = false;
@@ -99,24 +48,11 @@
 
                 submitBtn.disabled = !allFilled;
             }
-            
-            document.querySelectorAll("input, select, textarea").forEach(input =>{
+
+            document.querySelectorAll("input").forEach(input =>{
                 input.addEventListener("input", checkInputs);
             })
-            document.getElementById("Email-domain").addEventListener("change",checkInputs);
-
-            function combineEmail(){
-                const front = document.getElementById("Email-front").value;
-                const domainSelect = document.getElementById("Email-domain");
-                let domain = domainSelect.value;
-
-                if(domain=='custom'){
-                    domain = document.getElementById("custom-domain").value;
-                }
-    
-                const fullEmail = front + "@" + domain;
-                document.getElementById("Full-email").value = fullEmail;
-            }
+            
         </script>
     </body>
 </html>
