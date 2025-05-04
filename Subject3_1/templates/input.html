@@ -7,7 +7,7 @@
             font-weight: bold;
         }
         td{
-            padding-right: 20px;
+            padding-right: 1px;
             padding-bottom : 10px;
         }
         input{
@@ -28,6 +28,16 @@
                     <td><label for="StudentNumber">Student Number</label></td>
                     <td><input type="text" id="StudentNumber" name="StudentNumber" required></td>
                 </tr>
+                <tr>
+                    <td><label for="Gender">Gender</label></td>
+                </tr>
+                <tr>
+                    <td><label><input type="radio" value="Male" name="Gender" required />Male</label></td>
+                    <td><label><input type="radio" value="Female" name="Gender"/>Female</label></td>
+                </tr>
+                <tr>
+                    <td><label for="Subject">Subject</label></td>
+                    <td><input type="text" id="Subject" name="Subject" required></td>
             </table>
             
             <input type="hidden" id="Full-email" name="Full-email">
