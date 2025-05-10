@@ -30,44 +30,33 @@
                 </tr>
                 <tr>
                     <td><label for="Gender">Gender</label></td>
-                </tr>
-                <tr>
-                    <td><label><input type="radio" value="Male" name="Gender" required />Male</label></td>
-                    <td><label><input type="radio" value="Female" name="Gender"/>Female</label></td>
+                    <td>
+                        <input type="radio" value="Male" name="Gender">Male
+                        <input type="radio" value="Female" name="Gender">Female
+                    </td>
                 </tr>
                 <tr>
                     <td><label for="Major">Major</label></td>
                     <td><input type="text" id="Major" name="Major" required></td>
-                    <td><label>Programming Languages</label></td>
                 </tr>
-                <td>
-                    <input type="checkbox" id="python" name="languages" value="Python" checked>
-                    <label for="python">Python</label>
-            
-                    <input type="checkbox" id="java" name="languages" value="Java">
-                    <label for="java">Java</label>
-            
-                    <input type="checkbox" id="html" name="languages" value="HTML">
-                    <label for="html">HTML</label>
-            
-                    <input type="checkbox" id="cpp" name="languages" value="C++">
-                    <label for="cpp">C++</label>
-                </td>
-                    <td><label>Gender</label></td>
+                <tr>
+                    <td><label for="Languages">Programming Languages</label></td>
                     <td>
-                    <label for="gender-male">
-                        <input type="radio" id="gender-male" name="gender" value="Male" required>
-                        Male
-                    </label>
-                    <label for="gender-female">
-                        <input type="radio" id="gender-female" name="gender" value="Female">
-                        Female
-                    </label>
+                        <input type="checkbox" id="python" name="Languages" value="Python" checked>
+                        <label for="python">Python</label>
+                
+                        <input type="checkbox" id="java" name="Languages" value="Java">
+                        <label for="java">Java</label>
+                
+                        <input type="checkbox" id="html" name="Languages" value="HTML">
+                        <label for="html">HTML</label>
+                
+                        <input type="checkbox" id="cpp" name="Languages" value="C++">
+                        <label for="cpp">C++</label>
                     </td>
                 </tr>
             </table>
             
-            <input type="hidden" id="Full-email" name="Full-email">
             <button type='submit' id="submit-btn" disabled>submit</button>
         </form>
         <script>
@@ -75,6 +64,8 @@
             function checkInputs(){
                 const inputs = document.querySelectorAll("input[required]");
                 const submitBtn = document.getElementById("submit-btn");
+                const checkedradio = document.querySelector("input[name=Gender]:checked")
+                const checkboxcheck = document.querySelectorAll("input[name=Languages]:checked")
                 let allFilled = true;
 
                 inputs.forEach(input =>{
@@ -82,6 +73,12 @@
                         allFilled = false;
                     }
                 });
+                if(checkboxcheck.length==0){
+                    allFilled = false;
+                }
+                if(!checkedradio){
+                    allFilled = false;
+                }
 
                 submitBtn.disabled = !allFilled;
             }

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>학생 정보 입력</title>
+        <style>
+            body{
+                font-family: Arial, sans-serif;
+            }
+            .person-block{
+                margin-bottom: 15px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>학생 정보 입력</h1>
+        <form action="result" method="POST" id="studentForm" onsubmit="combineEmails()">
+            <div id="personContainer">
+                <table class="person-block">
+                    <tr>
+                        <td>이름: </td>
+                        <td><input type="text" name="name[]" required></td>
+                    </tr>
+                    <tr>
+                        <td>학번: </td>
+                        <td><input type="text" name="StudentNumber[]" required></td>
+                    </tr>
+                    <tr>
+                        <td>이메일: </td>
+                        <td>
+                            <input type="text" name="email-front[]" required>
+                            @
+                            <select class="email-domain" name="email-domain[]" required>
+                                <option value="unselected">Select</option>
+                                <option value="gmail.com">gmail.com</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="daum.com">daum.net</option>
+                                <option value="hanmail.net">hanmail.net</option>
+                                <option value="dgu.ac.kr">dgu.ac.kr</option>
+                                <option value="dongguk.edu">dongguk.edu</option>
+                                <option value="custom">직접 입력</option>
+                            </select>
+                            <input type="text" id = "custom-domain" name="custom-domain" style="display:none;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--여기에 추가-->
+                    </tr>
+                    <tr>
+                        <td colspan=2 style="padding-top:10px; text-align:right;">
+                            <button type="button" onclick="removeTable(this)">삭제</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <input type="hidden" name="email[]" class="email-hidden">
+            <button type="button" onclick="addPerson()">추가</button>
+            <button type="submit">제출</button>
+        </form>
+
+        <script>
+
+            document.getElementById("studentForm").addEventListener("submit", function(event){
+                combineEmails();
+                this.submit();
+            });
+
+            document.addEventListener('change',function(event) {
+                if(event.target.classList.contains('email-domain')){
+                    const emailDomain = event.target.nextElementSibling;
+                    if(event.target.value=="custom"){
+                        emailDomain.style.display = 'inline-block';
+                    }
+                    else{
+                        emailDomain.style.display = 'none';
+                    }
+                }
+            });
+
+            function combineEmails(){
+                const emailFronts = document.querySelectorAll('input[name="email-front[]"]');
+                const emailDomains = document.querySelectorAll('select[name="email-domain[]"]');
+                const container = document.getElementById('personContainer');
+                const hiddenEmails = document.querySelectorAll('.email-hidden');
+
+                hiddenEmails.forEach(function(hiddenEmail){
+                    hiddenEmail.remove();
+                });
+
+                emailFronts.forEach((front, index)=>{
+                    let domain = emailDomains[index].value;
+
+                    if(domain=="custom"){
+                        const customDomainInput = front.closest('td').querySelector('input[name="custom-domain"]');
+                        domain = customDomainInput.value;
+                    }
+
+                    const hiddenEmailField = document.createElement('input');
+                    hiddenEmailField.type = 'hidden';
+                    hiddenEmailField.name = 'email[]';
+                    hiddenEmailField.classList.add('email-hidden');
+                    hiddenEmailField.value = front.value + "@"+domain;
+
+                    container.appendChild(hiddenEmailField);
+                });
+            }
+
+            function addPerson(){
+                const container = document.getElementById("personContainer");
+
+                const personBlock = document.createElement("table");
+                personBlock.className = "person-block";
+                personBlock.innerHTML = `
+                    <table class="person-block">
+                    <tr>
+                        <td>이름: </td>
+                        <td><input type="text" name="name[]" required></td>
+                    </tr>
+                    <tr>
+                        <td>학번: </td>
+                        <td><input type="text" name="StudentNumber[]" required></td>
+                    </tr>
+                    <tr>
+                        <td>이메일: </td>
+                        <td>
+                            <input type="text" name="email-front[]" required>
+                            @
+                            <select class="email-domain" name="email-domain[]" required>
+                                <option value="unselected">Select</option>
+                                <option value="gmail.com">gmail.com</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="daum.com">daum.net</option>
+                                <option value="hanmail.net">hanmail.net</option>
+                                <option value="dgu.ac.kr">dgu.ac.kr</option>
+                                <option value="dongguk.edu">dongguk.edu</option>
+                                <option value="custom">직접 입력</option>
+                            </select>
+                            <input type="text" id = "custom-domain" name="custom-domain" style="display:none;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=2 style="padding-top:10px; text-align:right;">
+                            <button type="button" onclick="removeTable(this)">삭제</button>
+                        </td>
+                    </tr>
+                </table>
+                `;
+
+                const newSelect = personBlock.querySelector('.email-domain');
+                newSelect.addEventListener('change', function(){
+                    const emailDomain = newSelect.nextElementSibling;
+                    emailDomain.style.display = (newSelector.value=="custom") ? 'inline-block' : 'none';
+                })
+                container.appendChild(personBlock);
+            }
+
+            function removeTable(button){
+                button.closest("table").remove();
+            }
+        </script>
+    </body> 
+</html>

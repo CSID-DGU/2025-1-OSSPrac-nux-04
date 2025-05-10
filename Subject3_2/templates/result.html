@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>팀 구성원 정보 출력</title>
+        <style>
+            .container{
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                padding: 20px;
+            }
+            .student-block{
+                background-color: #f9f9f9;
+                padding: 15px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                width: 200px;
+                text-align: center;
+                box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
+            }
+            h1{
+                text-align: center;
+            }
+        </style>
+        <script>
+            function showContactInfo(){
+                alert("긴급전화: 010-7832-4105");
+            }
+            function openContactPage(){
+                window.open("/contact", "contactPage", "width=600, height=400");
+            }
+        </script>
+    </head>
+    <body>
+        <h1>학생 정보 출력</h1>
+        <div class="container">
+            {% for name, student_number, email in students%}
+            <div class="student-block">
+                <table>
+                    <tr>
+                        <td><strong>이름:</strong></td>
+                        <td>{{name}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>학번:</strong></td>
+                        <td>{{student_number}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>이메일:</strong></td>
+                        <td>{{email}}</td>
+                   </tr>
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div style="text-align: center;">
+            <button style="width:100px" onclick="window.history.back()">이전</button>
+        </div>
+
+        <footer>
+            <h5>
+                📞 안내: <button onclick="showContactInfo()"> 팀 긴급연락</button>
+                <button onclick="openContactPage()"> 팀 연락정보</button>
+            </h5>
+        </footer>
+    </body>
+
+</html>
