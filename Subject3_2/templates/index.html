@@ -1,84 +1,59 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=devide-width, initial-scale=1.0">
-        <title>Team NUX 정보 출력</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        <style>
-            .containera{
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-                padding: 20px;
-            }
-            .student-blocka{
-                background-color: #f9f9f9;
-                justify-content: center;
-                gap: 20px;
-                padding: 20px;
-            }
-            h1, h3, h5{
-                text-align: center;
-            }
-        </style>
-        <script>
-            function showContactInfo(){
-                alert("긴급전화: 010-7832-4105")
-            }
-            function openContactPage(){
-                window.open("/contact","contactPage","width=600, height=400")
-            }
-            function openInputPage(){
-                window.open("/input","InputPage","width=800, height=600")
-            }
-        </script>
-    </head>
-    <body>
-        <header><h1>Team NUX 정보 출력</h1></header>
-        <div class="container">
-            <div class="student-block">
-                <img src="{{ url_for('static', filename='images/JoeBiden.webp') }}" alt="이미지1">
-                <h2><strong>이름: </strong></h2>
-                <p><strong>역할: </strong></p>
-                <p><strong>학번: </strong></p>
-                <p><strong>학과: </strong></p>
-                <p><strong>이메일: </strong></p>
-                <p><strong>이상형: </strong></p>
-            </div>
-            <div class="student-block">
-                <img>
-                <h2><strong>이름: </strong></h2>
-                <p><strong>역할: </strong></p>
-                <p><strong>학번: </strong></p>
-                <p><strong>학과: </strong></p>
-                <p><strong>이메일: </strong></p>
-                <p><strong>이상형: </strong></p>
-            </div>
-            <div class="student-block">
-                <img>
-                <h2><strong>이름: </strong></h2>
-                <p><strong>역할: </strong></p>
-                <p><strong>학번: </strong></p>
-                <p><strong>학과: </strong></p>
-                <p><strong>이메일: </strong></p>
-                <p><strong>이상형: </strong></p>
-            </div>
-            <div class="student-block">
-                <img>
-                <h2><strong>이름: </strong></h2>
-                <p><strong>역할: </strong></p>
-                <p><strong>학번: </strong></p>
-                <p><strong>학과: </strong></p>
-                <p><strong>이메일: </strong></p>
-                <p><strong>이상형: </strong></p>
-            </div>
-        </div>   
-        <h3>팀 구성원 정보 입력 페이지 &nbsp&nbsp <button onclick="openInputPage()">이동</button></h3>
-        <footer>
-            <h5>📞 안내: <button onclick="showContactInfo()">팀 긴급연락</button>
-                <button onclick="openContactPage()">팀 연락정보</button>
-            </h5>
-        </footer>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    <title>학생 정보 출력</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .student-block {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h3, h5 {
+            text-align: center;
+        }
+    </style>
+    <script>
+        function showContactInfo() {
+            alert("긴급전화: 010-1234-5678");
+        }
+        function openContactPage() {
+            window.open("/contact", "contactPage", "width=600,height=400");
+        }
+        function openInputPage() {
+            window.open("/input", "InputPage", "width=800,height=600");
+        }
+    </script>
+</head>
+<body>
+    <h1>학생 정보 출력</h1>
+    <div class="container">
+        <div class="student-block">
+            <p><strong>프로필 사진: </strong></p>
+            <p><strong>이름: </strong></p>
+            <p><strong>역할: </strong></p>
+            <p><strong>학번: </strong></p>
+            <p><strong>학과: </strong></p>
+            <p><strong>이메일: </strong></p>
+            <p><strong>이상형: </strong></p>
+        </div>        
+    </div>
+    <h3> 팀 구성원 정보 입력 페이지 <button onclick="openInputPage()"> 이동 </button> </h3>
+    <footer>
+        <h5>📞 안내: <button onclick="showContactInfo()"> 팀 긴급연락</button> 
+            <button onclick="openContactPage()"> 팀 연락정보</button> </h5>
+    </footer>
+</body>
 </html>
