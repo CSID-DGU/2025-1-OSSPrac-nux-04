@@ -38,7 +38,7 @@
         <h1>학생 정보 출력</h1>
         <div class="container">
 
-            {% for name, student_number, emaiL,dream, Phonenumber, MBTI in students%}
+            {% for name, role, student_number, Department, Phonenumber, emaiL, gender, food, MBTI, dream in students%}
 
             <div class="student-block">
                 <table>
@@ -46,6 +46,10 @@
                     <tr>
                         <td><strong>이름:</strong></td>
                         <td>{{name}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>역할:</strong></td>
+                        <td>{{role}}</td>
                     </tr>
                     <tr>
                         <td><strong>학번:</strong></td>
@@ -62,6 +66,14 @@
                     <tr>
                         <td><strong>이메일:</strong></td>
                         <td>{{email}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>성별:</strong></td>
+                        <td>{{ gender }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>좋아하는 음식:</strong></td>
+                        <td>{{ food }}</td>
                     </tr>
                     <tr>
                         <td><strong>MBTI:</strong></td>

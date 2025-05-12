@@ -19,7 +19,7 @@
     </head>
     <body>
         <h1>학생 정보 입력</h1>
-        <form action="result" method="POST" id="studentForm" onsubmit="combineEmails()">
+        <form action="/result" method="POST" id="studentForm" onsubmit="combineEmails()">
             <div id="personContainer">
                 <table class="person-block">
                     <tr>
@@ -72,6 +72,20 @@
                         <td colspan=2 style="padding-top:10px; text-align:right;">
                             <button type="button" onclick="removeTable(this)">삭제</button>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>성별: </td>
+                        <td>
+                            <select name="gender[]" required>
+                                <option value="">선택</option>
+                                <option value="남자">남자</option>
+                                <option value="여자">여자</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>좋아하는 음식: </td>
+                        <td><input type="text" name="favorite_food[]" required /></td>
                     </tr>
                 </table>
             </div>
@@ -171,6 +185,20 @@
                     <tr>
                         <td>이상형: </td>
                         <td><input type="text" name="Dream girl/boy[]" required></td>
+                    </tr>
+                    <tr>
+                        <td>성별: </td>
+                        <td>
+                            <select name="gender[]" required>
+                                <option value="">선택</option>
+                                <option value="남자">남자</option>
+                                <option value="여자">여자</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>좋아하는 음식: </td>
+                        <td><input type="text" name="favorite_food[]" required /></td>
                     </tr>
                     <tr>
                         <td colspan=2 style="padding-top:10px; text-align:right;">
