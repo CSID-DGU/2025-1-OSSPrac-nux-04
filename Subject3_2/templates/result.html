@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <title>팀 구성원 정보 출력</title>
         <style>
             .container{
@@ -39,8 +38,8 @@
         <div class="container">
             {% for name, student_number, email, dream in students%}
             <div class="student-block">
+                <img src="{{ url_for('static', filename=img[name]) }}" width="150">
                 <table>
-                    <th></th>
                     <tr>
                         <td><strong>이름:</strong></td>
                         <td>{{name}}</td>
