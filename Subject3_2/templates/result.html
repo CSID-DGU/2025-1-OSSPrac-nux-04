@@ -37,7 +37,7 @@
     <body>
         <h1>학생 정보 출력</h1>
         <div class="container">
-            {% for name, student_number, email in students%}
+            {% for name, student_number, emaiL, Phonenumber, MBTI in students%}
             <div class="student-block">
                 <table>
                     <tr>
@@ -51,7 +51,15 @@
                     <tr>
                         <td><strong>이메일:</strong></td>
                         <td>{{email}}</td>
-                   </tr>
+                    </tr>
+                    <tr>
+                        <td><strong>전화번호:</strong></td>
+                        <td>{{Phonenumber}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MBTI:</strong></td>
+                        <td>{{MBTI}}</td>
+                    </tr>
                 </table>
             </div>
             {% endfor %}
