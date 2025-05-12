@@ -15,10 +15,11 @@ def result():
     names = request.form.getlist('name[]')
     student_numbers = request.form.getlist('StudentNumber[]')
     emails = request.form.getlist("email[]")
+    dreams = request.form.getlist('Dream[]')
     phonenumber = request.form.getlist('Phonenumber[]')
     MBTI = request.form.getlist('MBTI[]')
-    
-    return render_template('result.html',students=zip(names,student_numbers,emails,phonenumber, MBTI))
+    return render_template('result.html',students=zip(names,student_numbers,emails,dreams,phonenumber, MBTI))    
+
 
 @app.route('/contact')
 def contact_info():
