@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <title>팀 구성원 정보 출력</title>
         <style>
             .container{
@@ -37,9 +37,12 @@
     <body>
         <h1>학생 정보 출력</h1>
         <div class="container">
-            {% for name, role, student_number, email, gender, food in students %}
+
+            {% for name, role, student_number, Department, Phonenumber, emaiL, gender, food, MBTI, dream in students%}
+
             <div class="student-block">
                 <table>
+                    <th></th>
                     <tr>
                         <td><strong>이름:</strong></td>
                         <td>{{name}}</td>
@@ -53,6 +56,14 @@
                         <td>{{student_number}}</td>
                     </tr>
                     <tr>
+                        <td><strong>학과:</strong></td>
+                        <td>{{Department}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>전화번호:</strong></td>
+                        <td>{{Phonenumber}}</td>
+                    </tr>
+                    <tr>
                         <td><strong>이메일:</strong></td>
                         <td>{{email}}</td>
                     </tr>
@@ -63,6 +74,15 @@
                     <tr>
                         <td><strong>좋아하는 음식:</strong></td>
                         <td>{{ food }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MBTI:</strong></td>
+                        <td>{{MBTI}}</td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td><strong>이상형:</strong></td>
+                        <td>{{dream}}</td>
                     </tr>
                 </table>
             </div>
