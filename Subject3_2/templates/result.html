@@ -41,41 +41,10 @@
     <body>
         <h1>학생 정보 출력</h1>
         <div class="container">
-<<<<<<< HEAD
-            {% for name, role, student_number, Department, Phonenumber, email, gender, food, MBTI, dream, Languages in students%}
-=======
             {% for name, role, student_number, Department, Phonenumber, email, gender, food, MBTI, dream, Languages, profile_pics in students%}
->>>>>>> 12dfefe (modified by 6simho 250513.22:42)
             <div class="student-block">
                 <table>
-                    <img src="{{url_for('static',filename=photo[name])}}" width="150">
                     <tr>
-<<<<<<< HEAD
-                        <td style="white-space: nowrap; text-align: right;"><strong>이름: </strong></td>
-                        <td style="white-space: nowrap;">{{name}}</td>
-                    </tr>
-                    <tr>
-                        <td style="white-space: nowrap; text-align:right;"><strong>성별: </strong></td>
-                        <td style="white-space: nowrap;">{{ gender }}</td>
-                    </tr>
-                    <tr>
-                        <td style="white-space: nowrap; text-align:right;"><strong>역할: </strong></td>
-                        <td style="white-space: nowrap;">{{role}}</td>
-                    </tr>
-                    <tr>
-                        <td style="white-space: nowrap; text-align:right;"><strong>학번: </strong></td>
-                        <td style="white-space: nowrap;">{{student_number}}</td>
-                    </tr>
-                    <tr>
-                        <td style="white-space: nowrap; text-align:right;"><strong>학과: </strong></td>
-                        <td style="white-space: nowrap;">{{Department}}</td>
-                    </tr>
-                    <tr>
-                        <td style="white-space: nowrap; text-align:right;"><strong>전화번호: </strong></td>
-                        <td style="white-space: nowrap;">{{Phonenumber}}</td>
-                    </tr>
-                    <tr>
-=======
                         <td colspan="2" style="text-align:center;">
                             <img src="{{ url_for('static', filename='images/' ~ profile_pics) }}" width="100" alt="프로필">
                         </td>
@@ -105,7 +74,6 @@
                         <td style="white-space: nowrap;">{{Phonenumber}}</td>
                     </tr>
                     <tr>
->>>>>>> 12dfefe (modified by 6simho 250513.22:42)
                         <td style="white-space: nowrap; text-align:right;"><strong>이메일: </strong></td>
                         <td style="white-space: nowrap;">{{email}}</td>
                     </tr>
