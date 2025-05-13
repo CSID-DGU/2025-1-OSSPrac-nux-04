@@ -25,7 +25,7 @@
     </head>
     <body class='popup'>
         <h1>학생 정보 입력</h1><br>
-        <form action="/result" method="POST" id="studentForm" onsubmit="combineEmails(); collectLanguages();">
+        <form action="/result" method="POST" id="studentForm" onsubmit="combineEmails(); collectLanguages(); collectProfilePics();">
             <div id="personContainer">
                 <table class="person-block">
                     <tr>
@@ -200,11 +200,14 @@
                 const personBlocks = document.querySelectorAll('.person-block');
             
                 personBlocks.forEach(block => {
-                    const checkboxes = block.querySelectorAll('.languages-container input[type="checkbox"]:checked');
-                    const hiddenInput = block.querySelector('.languages-container input[type="hidden"]');
+                    const checkboxes = block.querySelectorAll('input[type="checkbox"]');
+                    const hiddenInput = block.querySelector('input[name="Languages[]"]');
             
-                    const selectedLanguages = Array.from(checkboxes).map(cb => cb.value);
-                    hiddenInput.value = selectedLanguages.join(', ');
+                    const selected = Array.from(checkboxes)
+                                        .filter(cb => cb.checked)
+                                        .map(cb => cb.value);
+            
+                    hiddenInput.value = selected.join(', ');
                 });
             }
             function collectProfilePics() {
