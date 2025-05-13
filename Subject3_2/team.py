@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from collections import defaultdict
 import os
 
 app = Flask(__name__)
@@ -11,23 +12,26 @@ def index() :
 def input() :
     return render_template('input.html')
 
-names = ['조바이든','육','신','정']
-dic = {}
+dic = defaultdict(lambda:'images/뚱.webp')
 
-for name in names :
-    fname = f'images/{name}.webp'
-    dic[name] = fname
-    
-print(dic)
+dic['조바이든'] = 'images/조바이든.webp'
+dic['신'] = 'images/신.webp'
+dic['육'] = 'images/하니.webp'
+dic['정'] = 'images/정.webp'
 
 @app.route('/result',methods=['POST'])
 def result():
     names = request.form.getlist('name[]')
+    role = request.form.getlist('Role[]')
     student_numbers = request.form.getlist('StudentNumber[]')
+    department = request.form.getlist('Department[]')
     emails = request.form.getlist("email[]")
+    genders = request.form.getlist('gender[]')
+    foods   = request.form.getlist('favorite_food[]')
     dreams = request.form.getlist('Dream[]')
-    
-    return render_template('result.html',students=zip(names,student_numbers,emails,dreams),img = dic)
+    phonenumber = request.form.getlist('Phonenumber[]')
+    MBTI = request.form.getlist('MBTI[]')
+    return render_template('result.html',students=zip(names,role,student_numbers,department,phonenumber,emails,genders,foods,MBTI,dreams),photo=dic)    
 
 @app.route('/contact')
 def contact_info():

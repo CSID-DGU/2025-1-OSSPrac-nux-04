@@ -19,7 +19,7 @@
     </head>
     <body>
         <h1>학생 정보 입력</h1>
-        <form action="result" method="POST" id="studentForm" onsubmit="combineEmails()">
+        <form action="/result" method="POST" id="studentForm" onsubmit="combineEmails()">
             <div id="personContainer">
                 <table class="person-block">
                     <tr>
@@ -37,6 +37,14 @@
                     <tr>
                         <td>학과: </td>
                         <td><input type="text" name="Department[]" required></td>
+                    </tr>
+                    <tr>
+                        <td>전화번호: </td>
+                        <td><input type="text" name="Phonenumber[]" required></td>
+                    </tr>
+                    <tr>
+                        <td>MBTI: </td>
+                        <td><input type="text" name="MBTI[]" required></td>
                     </tr>
                     <tr>
                         <td>이메일: </td>
@@ -59,6 +67,20 @@
                     <tr>
                         <td>이상형: </td>
                         <td><input type="text" name="Dream[]" required></td>
+                    </tr>
+                    <tr>
+                        <td>성별: </td>
+                        <td>
+                            <select name="gender[]" required>
+                                <option value="">선택</option>
+                                <option value="남자">남자</option>
+                                <option value="여자">여자</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>좋아하는 음식: </td>
+                        <td><input type="text" name="favorite_food[]" required /></td>
                     </tr>
                     <tr>
                         <td colspan=2 style="padding-top:10px; text-align:right;">
@@ -143,6 +165,14 @@
                         <td><input type="text" name="Department[]" required></td>
                     </tr>
                     <tr>
+                        <td>전화번호: </td>
+                        <td><input type="text" name="Phonenumber[]" required></td>
+                    </tr>
+                    <tr>
+                        <td>MBTI: </td>
+                        <td><input type="text" name="MBTI[]" required></td>
+                    </tr>
+                    <tr>
                         <td>이메일: </td>
                         <td>
                             <input type="text" name="email-front[]" required>
@@ -163,6 +193,20 @@
                     <tr>
                         <td>이상형: </td>
                         <td><input type="text" name="Dream[]" required></td>
+                    </tr>
+                    <tr>
+                        <td>성별: </td>
+                        <td>
+                            <select name="gender[]" required>
+                                <option value="">선택</option>
+                                <option value="남자">남자</option>
+                                <option value="여자">여자</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>좋아하는 음식: </td>
+                        <td><input type="text" name="favorite_food[]" required /></td>
                     </tr>
                     <tr>
                         <td colspan=2 style="padding-top:10px; text-align:right;">

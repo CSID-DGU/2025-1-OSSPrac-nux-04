@@ -12,16 +12,19 @@
                 padding: 20px;
             }
             .student-block{
+                display: inline-block;
                 background-color: #f9f9f9;
                 padding: 15px;
                 border: 1px solid #ccc;
                 border-radius: 8px;
-                width: 200px;
                 text-align: center;
                 box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
             }
             h1{
                 text-align: center;
+            }
+            td{
+                padding-right: 20px;
             }
         </style>
         <script>
@@ -36,26 +39,51 @@
     <body>
         <h1>학생 정보 출력</h1>
         <div class="container">
-            {% for name, student_number, email, dream in students%}
+            {% for name, role, student_number, Department, Phonenumber, email, gender, food, MBTI, dream in students%}
             <div class="student-block">
-                <img src="{{ url_for('static', filename=img[name]) }}" width="150">
                 <table>
+                    <img src="{{url_for('static',filename=photo[name])}}" width="150">
                     <tr>
-                        <td><strong>이름:</strong></td>
-                        <td>{{name}}</td>
+                        <td style="white-space: nowrap; text-align: right;"><strong>이름: </strong></td>
+                        <td style="white-space: nowrap;">{{name}}</td>
                     </tr>
                     <tr>
-                        <td><strong>학번:</strong></td>
-                        <td>{{student_number}}</td>
+                        <td style="white-space: nowrap; text-align:right;"><strong>성별: </strong></td>
+                        <td style="white-space: nowrap;">{{ gender }}</td>
                     </tr>
                     <tr>
-                        <td><strong>이메일:</strong></td>
-                        <td>{{email}}</td>
-                   </tr>
-                   <tr>
-                        <td><strong>이상형:</strong></td>
-                        <td>{{dream}}</td>
-                   </tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>역할: </strong></td>
+                        <td style="white-space: nowrap;">{{role}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>학번: </strong></td>
+                        <td style="white-space: nowrap;">{{student_number}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>학과: </strong></td>
+                        <td style="white-space: nowrap;">{{Department}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>전화번호: </strong></td>
+                        <td style="white-space: nowrap;">{{Phonenumber}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>이메일: </strong></td>
+                        <td style="white-space: nowrap;">{{email}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>좋아하는 음식: </strong></td>
+                        <td style="white-space: nowrap;">{{ food }}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>MBTI: </strong></td>
+                        <td style="white-space: nowrap;">{{MBTI}}</td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>이상형: </strong></td>
+                        <td style="white-space: nowrap;">{{dream}}</td>
+                    </tr>
                 </table>
             </div>
             {% endfor %}
