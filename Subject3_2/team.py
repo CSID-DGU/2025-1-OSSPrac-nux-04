@@ -15,9 +15,9 @@ def input() :
 dic = defaultdict(lambda:'images/뚱.webp')
 
 dic['조바이든'] = 'images/조바이든.webp'
-dic['신'] = 'images/신.webp'
-dic['육'] = 'images/하니.webp'
-dic['정'] = 'images/정.webp'
+dic['172'] = 'images/172.webp'
+dic['하니'] = 'images/하니.webp'
+dic['윤'] = 'images/백지헌.webp'
 
 @app.route('/result',methods=['POST'])
 def result():
