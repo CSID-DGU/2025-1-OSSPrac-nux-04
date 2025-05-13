@@ -19,7 +19,7 @@
     </head>
     <body>
         <h1>학생 정보 입력</h1>
-        <form action="/result" method="POST" id="studentForm" onsubmit="combineEmails()">
+        <form action="/result" method="POST" id="studentForm" onsubmit="combineEmails(); collectLanguages();">
             <div id="personContainer">
                 <table class="person-block">
                     <tr>
@@ -83,8 +83,18 @@
                         <td><input type="text" name="favorite_food[]" required /></td>
                     </tr>
                     <tr>
+                        <td>사용 가능한 프로그래밍 언어: </td>
+                        <td class="languages-container">
+                            <input type="checkbox" value="Python"> Python
+                            <input type="checkbox" value="Java"> Java
+                            <input type="checkbox" value="HTML"> HTML
+                            <input type="checkbox" value="C++"> C++
+                            <input type="hidden" name="Languages[]">
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan=2 style="padding-top:10px; text-align:right;">
-                            <button type="button" onclick="removeTable(this)">삭제</button>
+                            <button type="button" onclick="removeTable(this)">삭제</button
                         </td>
                     </tr>
                 </table>
@@ -138,6 +148,18 @@
                     hiddenEmailField.value = front.value + "@"+domain;
 
                     container.appendChild(hiddenEmailField);
+                });
+            }
+
+            function collectLanguages() {
+                const personBlocks = document.querySelectorAll('.person-block');
+            
+                personBlocks.forEach(block => {
+                    const checkboxes = block.querySelectorAll('.languages-container input[type="checkbox"]:checked');
+                    const hiddenInput = block.querySelector('.languages-container input[type="hidden"]');
+            
+                    const selectedLanguages = Array.from(checkboxes).map(cb => cb.value);
+                    hiddenInput.value = selectedLanguages.join(', ');
                 });
             }
 
@@ -207,6 +229,16 @@
                     <tr>
                         <td>좋아하는 음식: </td>
                         <td><input type="text" name="favorite_food[]" required /></td>
+                    </tr>
+                    <tr>
+                        <td>사용 가능한 프로그래밍 언어: </td>
+                        <td class="languages-container">
+                            <input type="checkbox" value="Python"> Python
+                            <input type="checkbox" value="Java"> Java
+                            <input type="checkbox" value="HTML"> HTML
+                            <input type="checkbox" value="C++"> C++
+                            <input type="hidden" name="Languages[]">
+                        </td>
                     </tr>
                     <tr>
                         <td colspan=2 style="padding-top:10px; text-align:right;">

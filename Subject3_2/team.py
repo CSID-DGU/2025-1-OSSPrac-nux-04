@@ -28,10 +28,11 @@ def result():
     emails = request.form.getlist("email[]")
     genders = request.form.getlist('gender[]')
     foods   = request.form.getlist('favorite_food[]')
+    Languages = request.form.getlist('Languages[]')
     dreams = request.form.getlist('Dream[]')
     phonenumber = request.form.getlist('Phonenumber[]')
     MBTI = request.form.getlist('MBTI[]')
-    return render_template('result.html',students=zip(names,role,student_numbers,department,phonenumber,emails,genders,foods,MBTI,dreams),photo=dic)    
+    return render_template('result.html',students=zip(names,role,student_numbers,department,phonenumber,emails,genders,foods,MBTI,dreams,Languages),photo=dic)    
 
 @app.route('/contact')
 def contact_info():
