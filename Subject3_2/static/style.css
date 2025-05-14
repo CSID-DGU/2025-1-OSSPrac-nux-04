@@ -25,7 +25,7 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  height: 100%;          /* enable full-height for scrolling */
+  height: auto;          /* enable full-height for scrolling */
   overflow-y: auto;      /* allow vertical scroll */
 }
 
