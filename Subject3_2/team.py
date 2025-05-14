@@ -21,6 +21,7 @@ dic['윤'] = 'images/백지헌.webp'
 
 @app.route('/result',methods=['POST'])
 def result():
+    profile_pics  = request.form.getlist('profile_pic[]')
     names = request.form.getlist('name[]')
     role = request.form.getlist('Role[]')
     student_numbers = request.form.getlist('StudentNumber[]')
@@ -32,7 +33,12 @@ def result():
     dreams = request.form.getlist('Dream[]')
     phonenumber = request.form.getlist('Phonenumber[]')
     MBTI = request.form.getlist('MBTI[]')
-    return render_template('result.html',students=zip(names,role,student_numbers,department,phonenumber,emails,genders,foods,MBTI,dreams,Languages),photo=dic)    
+    return render_template('result.html',
+                          students=zip(
+                            names, role, student_numbers, department,
+                            phonenumber, emails, genders, foods,
+                            MBTI, dreams, Languages, profile_pics
+                           ))    
 
 @app.route('/contact')
 def contact_info():

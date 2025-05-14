@@ -3,25 +3,37 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <title>학생 정보 입력</title>
-        <style>
-            body{
-                font-family: Arial, sans-serif;
-            }
-            .person-block{
-                margin-bottom: 15px;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 8px;
-                background-color: #f9f9f9;
-            }
-        </style>
     </head>
-    <body>
-        <h1>학생 정보 입력</h1>
-        <form action="/result" method="POST" id="studentForm" onsubmit="combineEmails(); collectLanguages();">
+    <body class='popup'>
+        <h1>학생 정보 입력</h1><br>
+        <form action="/result" method="POST" id="studentForm" onsubmit="combineEmails(); collectLanguages(); collectProfilePics();">
             <div id="personContainer">
                 <table class="person-block">
+                    <tr>
+                        <td>프로필 사진:</td>
+                        <td class="languages-container">
+                            <div class="profile-selector">
+                                <label>
+                                    <input type="radio" name="profile_pic[]" value="조바이든.webp" required>
+                                    <img src="{{ url_for('static', filename='/images/조바이든.webp') }}" width="100" alt="조바이든">
+                                </label>
+                                <label>
+                                    <input type="radio" name="profile_pic[]" value="백지헌.webp" required>
+                                    <img src="{{ url_for('static', filename='/images/백지헌.webp') }}" width="100" alt="백지헌">
+                                </label>
+                                <label>
+                                    <input type="radio" name="profile_pic[]" value="하니.webp" required>
+                                    <img src="{{ url_for('static', filename='/images/하니.webp') }}" width="100" alt="하니">
+                                </label>
+                                <label>
+                                    <input type="radio" name="profile_pic[]" value="172.webp" required>
+                                    <img src="{{ url_for('static', filename='/images/172.webp') }}" width="100" alt="172">
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td>이름: </td>
                         <td><input type="text" name="name[]" required></td>
@@ -108,7 +120,7 @@
 
             document.getElementById("studentForm").addEventListener("submit", function(event){
                 combineEmails();
-                this.submit();
+                collectProfilePics();
             });
 
             document.addEventListener('change',function(event) {
@@ -155,21 +167,62 @@
                 const personBlocks = document.querySelectorAll('.person-block');
             
                 personBlocks.forEach(block => {
-                    const checkboxes = block.querySelectorAll('.languages-container input[type="checkbox"]:checked');
-                    const hiddenInput = block.querySelector('.languages-container input[type="hidden"]');
+                    const checkboxes = block.querySelectorAll('input[type="checkbox"]');
+                    const hiddenInput = block.querySelector('input[name="Languages[]"]');
             
-                    const selectedLanguages = Array.from(checkboxes).map(cb => cb.value);
-                    hiddenInput.value = selectedLanguages.join(', ');
+                    const selected = Array.from(checkboxes)
+                                        .filter(cb => cb.checked)
+                                        .map(cb => cb.value);
+            
+                    hiddenInput.value = selected.join(', ');
                 });
             }
+            function collectProfilePics() {
+                const personBlocks = document.querySelectorAll('.person-block');
+            
+                personBlocks.forEach(block => {
+                    const selected = block.querySelector('input[type="radio"]:checked');
+                    const hidden = block.querySelector('input[type="hidden"][name="profile_pic[]"]');
+            
+                    if (selected && hidden) {
+                        hidden.value = selected.value;
+                    }
+                });
+            }
+            
 
             function addPerson(){
                 const container = document.getElementById("personContainer");
-
+                const index = document.querySelectorAll('.person-block').length;
+                
                 const personBlock = document.createElement("table");
                 personBlock.className = "person-block";
                 personBlock.innerHTML = `
                     <table class="person-block">
+                    <tr>
+                        <td>프로필 사진:</td>
+                        <td class="languages-container">
+                            <div class="profile-selector">
+                                <label>
+                                    <input type="radio" name="profile_radio_${index}" value="조바이든.webp" required>
+                                    <img src="/static/images/조바이든.webp" width="100" alt="조바이든">
+                                </label>
+                                <label>
+                                    <input type="radio" name="profile_radio_${index}" value="백지헌.webp" required>
+                                    <img src="/static/images/백지헌.webp" width="100" alt="백지헌">
+                                </label>
+                                <label>
+                                    <input type="radio" name="profile_radio_${index}" value="하니.webp" required>
+                                    <img src="/static/images/하니.webp" width="100" alt="하니">
+                                </label>
+                                <label>
+                                    <input type="radio" name="profile_radio_${index}" value="172.webp" required>
+                                    <img src="/static/images/172.webp" width="100" alt="172">
+                                </label>
+                                <input type="hidden" name="profile_pic[]">
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td>이름: </td>
                         <td><input type="text" name="name[]" required></td>
