@@ -5,23 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <title>학생 정보 입력</title>
-        <style>
-            body{
-                font-family: Arial, sans-serif;
-            }
-            .person-block{
-                margin-bottom: 15px;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 8px;
-                background-color: #f9f9f9;
-            }
-            body.popup {
-                max-height: 90vh;
-                overflow-y: auto;
-                padding: 20px;
-            }
-        </style>
     </head>
     <body class='popup'>
         <h1>학생 정보 입력</h1><br>
@@ -124,22 +107,6 @@
                     <tr>
                         <td colspan=2 style="padding-top:10px; text-align:right;">
                             <button type="button" onclick="removeTable(this)">삭제</button
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>언어: </td>
-                        <td>
-                            <input type="checkbox" id="python" name="Languages" value="Python" checked>
-                            <label for="python">Python</label>
-                    
-                            <input type="checkbox" id="java" name="Languages" value="Java">
-                            <label for="java">Java</label>
-                    
-                            <input type="checkbox" id="html" name="Languages" value="HTML">
-                            <label for="html">HTML</label>
-                    
-                            <input type="checkbox" id="cpp" name="Languages" value="C++">
-                            <label for="cpp">C++</label>
                         </td>
                     </tr>
                 </table>
