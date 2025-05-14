@@ -13,20 +13,13 @@
             window.open("/contact", "contactPage", "width=600,height=400");
         }
         function openInputPage() {
-          const w = 1200, h = 800;  // 기존보다 크게!
-          const left = (window.screen.width  - w) / 2;
-          const top  = (window.screen.height - h) / 2;
-          window.open(
-              "/input",
-              "InputPage",
-              'width=${w},height=${h},left=${left},top=${top},scrollbars=yes,resizable=yes'
-          );
+          window.location.href = '/input';
       }
     </script>
 </head>
 <body>
   <header>
-    <img src="{{ url_for('static', filename='/images/banner.jpg') }}" alt="NUX 로고" class="logo">
+    <img src="{{ url_for('static', filename='/images/banner.png') }}" alt="NUX 로고" class="logo">
     <h1>팀 소개</h1>
     <p>오픈소스소프트웨어실습</p>
   </header>
