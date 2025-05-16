@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>팀 구성원 정보 출력</title>
+        <style>
+            .container{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                padding: 20px;
+            }
+            .student-block{
+                display: inline-block;
+                background-color: #f9f9f9;
+                padding: 15px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                text-align: center;
+                box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
+            }
+            h1{
+                text-align: center;
+            }
+            td{
+                padding-right: 20px;
+            }
+        </style>
+        <script>
+            function showContactInfo(){
+                alert("긴급전화: 010-7832-4105");
+            }
+            function openContactPage(){
+                window.open("/contact", "contactPage", "width=600, height=400");
+            }
+        </script>
+    </head>
+    <body>
+        <h1>학생 정보 출력</h1>
+        <div class="container">
+            {% for name, role, student_number, Department, Phonenumber, email, gender, food, MBTI, dream, Languages, profile_pics in students%}
+            <div class="student-block">
+                <table>
+                    <tr>
+                        <td colspan="2" style="text-align:center;">
+                            <img src="{{ url_for('static', filename='images/' ~ profile_pics) }}" alt="프로필">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align: right;"><strong>이름: </strong></td>
+                        <td style="white-space: nowrap;">{{name}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>성별: </strong></td>
+                        <td style="white-space: nowrap;">{{ gender }}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>역할: </strong></td>
+                        <td style="white-space: nowrap;">{{role}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>학번: </strong></td>
+                        <td style="white-space: nowrap;">{{student_number}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>학과: </strong></td>
+                        <td style="white-space: nowrap;">{{Department}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>전화번호: </strong></td>
+                        <td style="white-space: nowrap;">{{Phonenumber}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>이메일: </strong></td>
+                        <td style="white-space: nowrap;">{{email}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>좋아하는 음식: </strong></td>
+                        <td style="white-space: nowrap;">{{ food }}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>MBTI: </strong></td>
+                        <td style="white-space: nowrap;">{{MBTI}}</td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>이상형: </strong></td>
+                        <td style="white-space: nowrap;">{{dream}}</td>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap; text-align:right;"><strong>사용 가능한 프로그래밍 언어:</strong></td>
+                        <td style="white-space: nowrap;">{{ Languages }}</td>
+                    </tr>
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div style="text-align: center;">
+            <button style="width:100px" onclick="window.history.back()">이전</button>
+        </div>
+
+        <footer>
+            <h5>
+                📞 안내: <button onclick="showContactInfo()"> 팀 긴급연락</button>
+                <button onclick="openContactPage()"> 팀 연락정보</button>
+            </h5>
+        </footer>
+    </body>
+
+</html>
