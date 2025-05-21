@@ -1,0 +1,13 @@
+version: "3.0"
+
+services:
+  frontapp:
+    build: ./FrontEnd
+    ports:
+      - "80:80"
+
+  backapp:
+    build: ./BackEnd
+    command: "python3 main.py"
+    ports:
+      - "5000:5000"

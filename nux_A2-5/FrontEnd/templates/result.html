@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <title>Result</title>
+    <body>
+        <table border = "1">
+            <caption><b>Student Info</b></caption>
+            {% for key, value in result.items() %}
+                <tr>
+                    <th> {{key}} </th>
+                    <td style="white-space: pre-wrap;"> {{value}} </td>
+                </tr>
+            {%endfor%}
+        </table>
+    </body>
+</html>
