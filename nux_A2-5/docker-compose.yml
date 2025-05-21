@@ -8,6 +8,5 @@ services:
 
   backapp:
     build: ./BackEnd
-    command: "python3 main.py"
     ports:
       - "5000:5000"
