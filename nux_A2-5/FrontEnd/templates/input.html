@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>input info</title>
+    <style>
+        t{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        td{
+            padding-right: 1px;
+            padding-bottom : 10px;
+        }
+        input{
+            width: 100px;
+        }
+    </style>
+    <body>
+        <p><t>WELCOME!</t></p>
+        <p style = "font-weight: bold">Fill follows</p>
+
+        <form action="/result" method="POST" onsubmit="checkInputs()">
+            <table>
+                <tr>
+                    <td><label for="name">Name</label></td>
+                    <td><input type="text" id="name" name="name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="StudentNumber">Student Number</label></td>
+                    <td><input type="text" id="StudentNumber" name="StudentNumber" required></td>
+                </tr>
+                <tr>
+                    <td><label for="Gender">Gender</label></td>
+                    <td>
+                        <input type="radio" value="Male" name="Gender">Male
+                        <input type="radio" value="Female" name="Gender">Female
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Major">Major</label></td>
+                    <td><input type="text" id="Major" name="Major" required></td>
+                </tr>
+                <tr>
+                    <td><label for="Languages">Programming Languages</label></td>
+                    <td>
+                        <input type="checkbox" id="python" name="Languages" value="Python" checked>
+                        <label for="python">Python</label>
+                
+                        <input type="checkbox" id="java" name="Languages" value="Java">
+                        <label for="java">Java</label>
+                
+                        <input type="checkbox" id="html" name="Languages" value="HTML">
+                        <label for="html">HTML</label>
+                
+                        <input type="checkbox" id="cpp" name="Languages" value="C++">
+                        <label for="cpp">C++</label>
+                    </td>
+                </tr>
+            </table>
+            
+            <button type='submit' id="submit-btn" disabled>submit</button>
+        </form>
+        <script>
+
+            function checkInputs(){
+                const inputs = document.querySelectorAll("input[required]");
+                const submitBtn = document.getElementById("submit-btn");
+                const checkedradio = document.querySelector("input[name=Gender]:checked")
+                const checkboxcheck = document.querySelectorAll("input[name=Languages]:checked")
+                let allFilled = true;
+
+                inputs.forEach(input =>{
+                    if(!input.value.trim()){
+                        allFilled = false;
+                    }
+                });
+                if(checkboxcheck.length==0){
+                    allFilled = false;
+                }
+                if(!checkedradio){
+                    allFilled = false;
+                }
+
+                submitBtn.disabled = !allFilled;
+            }
+
+            document.querySelectorAll("input").forEach(input =>{
+                input.addEventListener("input", checkInputs);
+            })
+            
+        </script>
+    </body>
+</html>
