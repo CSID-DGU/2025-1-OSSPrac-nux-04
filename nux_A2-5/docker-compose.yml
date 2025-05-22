@@ -3,10 +3,12 @@ version: "3.0"
 services:
   frontapp:
     build: ./FrontEnd
+    images: junyongcho/frontapp:latest
     ports:
       - "80:80"
 
   backapp:
     build: ./BackEnd
+    image: 
     ports:
       - "5000:5000"
