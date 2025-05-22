@@ -3,7 +3,7 @@ version: "3.0"
 services:
   frontapp:
     build: ./FrontEnd
-    images: junyongcho/frontapp:latest
+    image: junyongcho/frontapp:latest
     ports:
       - "80:80"
 
