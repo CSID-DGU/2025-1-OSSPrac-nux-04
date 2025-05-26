@@ -9,5 +9,6 @@ services:
 
   backapp:
     build: ./BackEnd
+    image: ${DOCKER_USR}/backapp:latest
     ports:
       - "5000:5000"
