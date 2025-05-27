@@ -1,0 +1,46 @@
+pipeline{ 
+    agent any 
+     
+    triggers{ 
+        pollSCM('H/3 * * * *') 
+    } 
+     
+    environment{ 
+        DOCKER = credentials('docker-hub') 
+    } 
+     
+    stages{ 
+        stage('Prepare'){ 
+            steps{ 
+                git url : 'https://github.com/CSID-DGU/2025-1-OSSPrac-nux-04', // 수정한 부분 
+                branch : 'main', 
+                credentialsId: 'github' 
+            } 
+        } 
+         
+        stage('Build'){ 
+            steps{ 
+                dir('nux_A2-5'){  // 수정한 부분 
+                    sh 'docker compose build backapp' 
+                } 
+            } 
+        } 
+         
+        stage('Tag'){ 
+            steps{ 
+                script{     // 수정한 부분 
+                    sh "docker tag ${DOCKER_USR}/backapp ${DOCKER_USR}/backapp:${BUILD_NUMBER}" 
+                } 
+            } 
+        } 
+         
+        stage('Push'){ 
+            steps{ 
+                script{ 
+                    sh "docker login -u ${DOCKER_USR} -p ${DOCKER_PSW}" 
+                    sh "docker push ${DOCKER_USR}/backapp:${BUILD_NUMBER}" 
+                }     // 수정한 부분 
+            } 
+        } 
+    } 
+} 
